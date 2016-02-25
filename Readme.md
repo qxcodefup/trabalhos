@@ -5,7 +5,7 @@ Neste repositório você encontrará a descrição de vários trabalhos que pode
 
 Cada pasta corresponde a um trabalho. Dentro da pasta você vai encontrar:
 
-* O pdf com a descrição da atividade.
+* O pdf ou Readme com a descrição da atividade.
 * Um binario executavel para windows e linux para que o aluno executando o trabalho entenda melhor o que está sendo pedido.
 * Uma pasta latex com o código fonte que gera o pdf, caso você professor queira fazer alguma adaptação.
 
@@ -25,28 +25,28 @@ Cada pasta corresponde a um trabalho. Dentro da pasta você vai encontrar:
 * Esforço: Nível 1.5.
 
 ---
-###Bingo
-	
-* Objetivo 1: Implementar uma roleta e hack de um bingo de 75 bolas. 
+### Bingo
+
+* Objetivo 1: Implementar uma roleta e hack de um bingo de 75 bolas.
 * Objetivo 2: Implementar um gerador de cartelas.
 * Requisitos: Codicionais, repetição, Vetores, I/O.
 * Esforço: Nível 2.
 
 ---
-###Cifra de Playfair
+### Cifra de Playfair
 
 * Objetivo: Implementar a cifra histórica de Playfair.
 * Requisitos: Strings, Arquivos, Matrizes.
 * Esforço: Nível 2.5.
 
 ---
-###Batalha Gremlin
+### Batalha Gremlin
 * Objetivo: Implementar um campo de guerra entre gremilins.
 * Requisitos: String, Random, Vetores.
 * Esforço: Nível 1 até Nível 3.
 
 ---
-###Loja Online
+### Loja Online
 
 * Objetivo 1: Implementar um cadastro de produtos e controle de estoque.
 * Objetivo 2: Implementar um carrinho de compras.
@@ -59,26 +59,11 @@ Cada pasta corresponde a um trabalho. Dentro da pasta você vai encontrar:
 * Objetivo: Implementar o a batalha entre dois treinadores pokemon.
 * Requisitos: Arquivos, I/O, Vetores.
 * Esforço: Nível 2.5
+
 ---
-##Ainda em desenvolvimento
+## Ainda em desenvolvimento
 
 * Jogo da Velha
 * Jogo da Forca
 * Caça Palavras
 * Poker
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
