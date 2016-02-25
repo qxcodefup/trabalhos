@@ -1,0 +1,70 @@
+2.4.3 Cifra de Playfair
+Extraído de http://www.numaboa.com.br/criptografia/substituicoes/poligramicas/1041-playfair
+Apesar do nome do Barão de Playfair estar associado a uma das cifra clássicas mais conhecidas, foi seu amigo, o cientista Charles Wheatstone, quem a concebeu. Após sua criação em 1854, o barão conseguiu que o governo britânico adotasse oficialmente o uso da cifra - daí o nome Cifra "de" Playfair.
+A Playfair é uma cifra de bloco primitiva, usando alguns princípios comuns às cifras de bloco atuais. O melhor meio de se aproximar da criptologia moderna, sem ter que enfrentar a teoria dos números e a matemática, é entendendo a Playfair.
+A Cifra Playfair é uma substituição polialfabética em bloco bigrâmico (ou digrâmico). Nesta substituição, as letras são tomadas duas a duas (bloco bigrâmico), de acordo com regras aplicadas a uma grade de 5 por 5 que contém o alfabeto cifrante.
+A segurança desta cifra é baixa e seu interesse é apenas histórico. A criptoanálise pode ser feita através da análise da frequência de dígrafos. Por ser uma cifra polialfabética, a Playfair dificulta um pouco a criptoanálise e, por ser uma cifra de dígrafos, é preciso fazer uma análise da frequência de dígrafos. Como existem mais dígrafos do que letras, o número de elementos disponíveis para a análise diminui. Por exemplo: numa mensagem de 100 letras, cifrada com uma substituição simples, temos 100 elementos derivados de uma escolha de 26; numa mensagem de 100 letras, cifrada em dígrafos, temos 50 elementos derivados de uma escolha de 676.
+A Playfair possui outras vantagens: não precisa de tabelas ou dispositivos complicados, possui uma palavra-chave que pode ser memorizada ou trocada com facilidade, é muito fácil de ser implementada e pouco sujeita a erros. Devido a estas características o sistema é perfeito para ser usado como uma "cifra de campo".
+Vamos a um exemplo de como usar esta cifra. Siga as etapas e, no final, faça um teste no "Confira a cifra".
+Preparando o texto claro
+A preparação do texto claro é extremamente fácil: basta formar grupos de 2 letras, os blocos digrâmicos. Cada bloco receberá um tratamento de acordo com as regras cifrantes (veja abaixo). O texto claro que será cifrado com a Playfair é:
+Sérgio Vieira de Melo, o brasileiro embaixador da paz, acaba de ser assassinado.
+Preparamos o texto para ser cifrado:
+SE RG IO VI EI RA DE ME LO OB RA SI LE IR OE MB
+AI XA DO RD AP AZ AC AB AD ES ER AS SA SS IN AD O
+De imediato notamos que o último bloco ficou com apenas uma letra e que existe um bloco com letra dupla (SS). Letras repetidas impedem que a cifra possa ser aplicada corretamente. Nestes casos, convenciona-se uma letra de separação. Geralmente são usados o X e/ou o Z. Caso falte uma letra no final, adiciona-se X ou Z. Corrigindo os blocos obtemos:
+SE RG IO VI EI RA DE ME LO OB RA SI LE IR OE MB
+AI XA DO RD AP AZ AC AB AD ES ER AS SA SX SI NA DO
+                                         ….......................................^
+
+N
+U
+M
+A
+B
+O
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+P
+Q
+R
+S
+T
+V
+X
+Y
+Z
+
+                                        |
+O cifrante
+O alfabeto cifrante proposto por Wheatstone fica disposto numa grade de 5 por 5. Como o alfabeto latino possui 26 letras, é preciso eliminar uma das letras. Vários critérios podem ser utilizados. A variante inglesa é considerar I/J como apenas I. Outros optam por eliminar o W, substituindo-o por V, ou então eliminar o Q, substituindo-o por K.
+Além disto, para facilitar a memorização do cifrante, Wheatstone sugeriu começar o preenchimento da grade com uma palavra-chave. O restante das células é preenchido com as letras faltantes em ordem alfabética.
+No nosso exemplo usaremos a palavra-chave NUMABOA, que precisa ser reduzida para NUMABO para que o A não se repita. Além disto, o W será eliminado. Veja na Figura acima.
+As regras cifrantes
+As letras de um bloco podem ter apenas 3 localizações na grade: estão na mesma linha, estão na mesma coluna ou estão em linhas e colunas diferentes. Portanto, existem apenas 3 regras que devem ser aplicadas aos blocos digrâmicos:
+1. Letras na mesma linha são substituídas pelas letras à sua direita. Caso uma das letras do bigrama esteja na última coluna da grade, "roda-se a linha" e utiliza-se a letra da primeira coluna.
+2. Letras na mesma coluna são substituídas pelas letras abaixo delas. Caso a letra esteja na última linha, "roda-se a coluna" e utiliza-se a letra da primeira linha.
+3. Letras em linhas e colunas diferentes: as letras do bigrama formam um "quadrilátero" e são substituídas pelas letras posicionadas nos cantos contrários do quadrilátero.
+
+
+Não se apavore. Alguns exemplos mostram que é fácil. Observe a regra 1 em funcionamento, onde substituímos RA por YE. Se o digrama fosse GT, o G seria substituído por L e o T seria substituído por N. Se o digrama fosse GL, seria substituído por LT.
+A regra 2 indica como o digrama OE deve ser substituído. A letra O pela letra à sua direita C e a letra E pela letra à sua direita F. Outros exemplos seriam PS substituído por QL e MA substituído por AB.
+A regra 3 é a mais enjoada. Tomemos como exemplo o digrama LE. Visualize inicialmente o quadrilátero formado por estas duas letras. Conforme a regra, as letras do digrama serão substituídas pelas letras da mesma linha, mas no canto oposto. Sendo assim, L é substituído por R e E é substituído por O.
+Pela regra 3, LE é substituído por RO, MG por IN e BP por SU.
+Estas três regras são a alma da cifra Playfair. Obviamente, as mesmas regras são aplicadas para decifrar o texto, só que são usadas "ao contrário".
+O exemplo cifrado
+Obedecendo as regras para a substituição, veja abaixo o texto cifrado do exemplo. Os digramas foram mantidos para que fique mais fácil conferir as substituições efetuadas.
+SE RG IO VI EI RA DE ME LO OB RA SI LE IR OE MB
+RF LJ GD XH DJ YE EF AD TG FN YE QK RO JQ CF AN
+
+AI XA DO RD AP AZ AC AB AD ES ER AS SA SX SI NA DO
+MJ YM EC QE UR BY UE BN ME FR JY BR RB QZ QK UB EC
+Observe as substituições sofridas pela letra E: foi trocada por F, D, O e J. Note que outras letras também foram substituídas por mais de uma. Este é o resultado da substituição polialfabética. Cada digrama, pela sua posição na grade, acaba fazendo uso de uma nova combinação de letras, ou seja, de um novo alfabeto cifrante.

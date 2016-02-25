@@ -1,0 +1,218 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[utf8x]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{fontenc}
+\usepackage{graphicx} 
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{pdflscape}
+\usepackage[bottom=3cm,top=3cm,left=3cm,right=3cm]{geometry} 
+\usepackage[pdftex]{hyperref} %permiti \url
+
+\usepackage{wallpaper}
+\usepackage{subfig}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{QXCode}
+\lhead{Pokemon}
+\fancyfoot[R]{\thepage}
+%\rfoot{Page \thepage}
+
+\usepackage[absolute]{textpos}
+
+\lstset{
+%    language=java,
+    language=c++,
+    keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+    identifierstyle=\ttfamily,
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+    showstringspaces=false,
+    basicstyle=\small,
+    tabsize=2,
+    breaklines=true,
+    frame=single
+}
+
+\renewcommand{\tt}[1]{\lstinline|#1|}
+\renewcommand{\bf}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\emph{#1}}
+
+\begin{document}
+
+\ThisULCornerWallPaper{1}{./imagens/header}
+
+\begin{textblock}{15}(0.4, 0.4)
+\noindent
+\begin{center}
+\LARGE{\bf{QXCode - Quixadá Coding Team}}\\
+\large{\bf{Fundamentos de Programação}} \\
+\large{\bf{\today}}
+\end{center}
+\end{textblock}
+
+\title{\bf{POKEMON}}
+
+\author{
+Prof. Paulo Henrique Macêdo \thanks{phmacedoaraujo@lia.com.br}
+}
+
+\date{}
+
+\maketitle
+\thispagestyle{empty}
+
+%#################################################################
+%#################################################################
+%#################################################################
+%#################################################################
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\linewidth]{imagens/pokemon}
+\label{fig:pokemon}
+\end{figure}
+
+\section{Instruções Gerais}
+O objetivo deste trabalho é criar um jogo que simula uma batalha entre dois treinadores de Pokemon (sim, isso mesmo! Gostou ou não?)
+
+Para realizar esse trabalho você precisará lidar com entrada e saída tanto do terminal como de arquivos. Também precisará do conteúdo de vetores e estruturas.
+
+A persistência dos dados deve ser feita em arquivos. \textbf{Devem existir pelo menos dois arquivos: um que armazena a lista de todos os Pokemons disponíveis e outro que armazena o histórico das batalhas realizadas.}
+
+\section{Arquivos}
+\subsection{Arquivo de Pokemons}
+Para o arquivo que contém todos os Pokemons, as seguintes operações devem ser implementadas:
+
+\begin{enumerate}
+  \item Listar todos os Pokemons (apenas o ID e o nome)
+  \item Listar todos os Pokemons com suas respectivas informações/atributos
+  \item Inserir um novo Pokemon
+  \item Remover um Pokemon
+\end{enumerate}
+
+Ao incluir um novo Pokemon, seu sistema deverá gerar automaticamente um identificador único para ele (ID), para que a escolha/remoção do mesmo possa ser feita de modo mais eficiente ao ser buscado pelo sistema.
+
+Para deletar um Pokemon, o sistema só deverá pedir o ID. Deve ser mostrado se a operação foi bem sucedida ou não.
+
+\textbf{As informações/atributos de cada Pokemon são:} ID, Nome, Elemento (Água(A), Fogo(F), Terra(T), Planta(P) ou Elétrico(E)), Poder de Ataque Físico (ATK), Poder de Ataque Mágico (MATK), Defesa Física (DEF), Defesa Mágica (MDEF), Quantidade de Vida (HP) e Quantidade de Pontos de Mágia (SP).\\\\
+
+Uma {\it sugestão} é que você utilize o seguinte formato para cada Pokemon no arquivo (nove linhas de informação para cada um):
+
+\begin{verbatim}
+ID
+Nome
+Elemento
+ATK
+MATK
+DEF
+MDEF
+HP
+SP
+\end{verbatim}
+
+Além disso, é ideal que haja uma linha vazia entre as informações de um Pokemon e o Pokemon seguinte.
+
+%Observe a separação dos campos por ponto-e-vírgula e um espaço. O ideal é que seja organizado de forma que cada linha do arquivo de estoque contenha apenas um produto.
+\subsubsection{Exemplo}
+\begin{verbatim}
+	1
+	Pikachu
+	E
+	10
+	100
+	5
+	20
+	100
+	100
+	
+	2
+	Charmander
+	F
+	15
+	80
+	5
+	20
+	120
+	80
+\end{verbatim}
+
+\subsection{Arquivo de Histórico de Batalhas}
+O arquivo de histórico de batalhas deve conter o vencedor de cada batalha juntamente à quantidade de Pokemons que ainda estavam aptos a lutar após o término desta batalha.
+
+\section{Batalha}
+A batalha entre os dois treinadores Pokemons(usuário e máquina) segue os seguintes passos:
+
+\begin{enumerate}
+	\item A lista de Pokemons disponíveis, com o ID e nome de cada um, é mostrada na tela.
+	\item O usuário escolhe 6 dos Pokemons disponíveis (não podendo escolher um mesmo Pokemon duas vezes).
+	\item A máquina escolhe 6 Pokemons aleatoriamente, dentre os Pokemons disponíveis (não podendo escolher um mesmo Pokemon duas vezes).
+	\item Em seguida, o usuário e a máquina escolhem um Pokemon que lutam entre si até que um deles não tenha mais condição de lutar (HP se torna 0). Então o Pokemon que perdeu deve ser substituído.
+	\item A batalha acaba quando o usuário ou a máquina tem todos os seus Pokemons derrotados (HP igual a 0). O vencedor é o treinador que tem pelo menos um Pokemon apto a lutar depois do término da batalha.
+\end{enumerate}
+	
+	
+\subsection{Batalha entre dois Pokemons}
+A batalha entre dois Pokemons é realizada por turnos e consiste em cada treinador escolher um ataque, seja físico ou seja mágico, por turno. Cada ataque mágico gasta 10 unidades de Pontos de Magia (SP) do Pokemon. Quando o SP se torna 0, o Pokemon não pode mais usar um Ataque Mágico.
+	
+A quantidade de pontos de vida que um Pokemon irá perder ao receber um ataque é dada pela expressão:
+
+\begin{eqnarray}
+	ATK_1 - DEF_2
+\end{eqnarray}
+
+$\newline$
+Onde $ATK_1$ é o Poder de Ataque Físico do Pokemon atacante e $DEF_2$ é a Defesa Física do Pokemon que está recebendo o ataque. A mesma expressão vale para o Ataque Mágico, substituindo ATK por MATK e DEF por MDEF.
+
+\subsubsection{Relações entre os Elementos}
+O elemento de cada Pokemon é fundamental ao considerar os poderes mágicos. Se um Pokemon faz um Ataque Mágico em um oponente que possui elemento fraco em relação ao elemento do que está atacando, então a quantidade de pontos de vida perdidos será o dobro. Se for o contrário, o ataque irá tirar metade dos pontos de vida que deveria. Sendo assim, os elementos possuem uma relação de dominância que é definida abaixo:
+
+\begin{itemize}
+	\item Fogo domina Planta
+	\item Planta domina Terra
+	\item Elétrico domina Água
+	\item Água domina Fogo
+	\item Terra domina Elétrico
+\end{itemize}
+
+Qualquer outra combinação de elementos não mostrada acima não garante dominância entre os mesmos. Por exemplo, um Ataque Mágico de um Pokemon do tipo Fogo tira o dobro se usado em um Pokemon do tipo Planta, ou seja, $2 \cdot (MATK_1 - MDEF_2)$. Porém, um Ataque Mágico de Fogo tira $\frac{1}{2} \cdot (MATK_1 - MDEF_2)$ em um Pokemon do tipo Água, já que o elemento Água domina o elemento Fogo.
+
+
+\section{Menu}
+O menu deverá conter pelo menos as seguintes opções:
+\begin{verbatim}
+P - Listar Pokemons (IDs e nomes)
+L - Listar Pokemons com todas as informações
+I - Inserir Pokemon
+R - Remover Pokemon
+B - Iniciar Batalha
+\end{verbatim}
+
+\section{Bônus}
+Pontos de bônus são dados para as seguintes incorporações no jogo:
+\begin{enumerate}
+	\item Possibilidade de substituir um Pokemon no meio da batalha antes que ele tenha sido derrotado.
+	\item Possibilidade de mais de um Ataque Mágico para cada Pokemon e possibilidade de escolha de qual usar.
+	\item Parte gráfica (mais difícil, realmente deixe para o final se der tempo!).
+\end{enumerate}
+
+\section{Sugestões}
+Use variáveis de registro para armazenar as informações de cada Pokemon.\\
+
+Atenção, não repita código. Se quando você quiser modificar algo no seu programa, terá que modificar em mais de um lugar no código, provavelmente há alguma coisa errada. Modularize as ações em funções e coloque em bibliotecas para poder serem usadas (use arquivos .h).
+
+Se precisar de ajuda, lembre-se dos professores, bolsistas, monitores e seus amigos. A ajuda pode estar a um botão de distância.
+
+Bom trabalho.
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=0.4\linewidth]{./imagens/help}
+%\end{figure}
+
+
+\end{document}

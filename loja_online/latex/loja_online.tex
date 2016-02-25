@@ -1,0 +1,231 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[utf8x]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{fontenc}
+\usepackage{graphicx} 
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{pdflscape}
+\usepackage[bottom=3cm,top=3cm,left=3cm,right=3cm]{geometry} 
+\usepackage[pdftex]{hyperref} %permiti \url
+
+\usepackage{wallpaper}
+\usepackage{subfig}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{QXCode}
+\lhead{Loja Online}
+\fancyfoot[R]{\thepage}
+%\rfoot{Page \thepage}
+
+\usepackage[absolute]{textpos}
+
+\lstset{
+%    language=java,
+    language=c++,
+    keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+    identifierstyle=\ttfamily,
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+    showstringspaces=false,
+    basicstyle=\small,
+    tabsize=2,
+    breaklines=true,
+    frame=single
+}
+
+\renewcommand{\tt}[1]{\lstinline|#1|}
+\renewcommand{\bf}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\emph{#1}}
+
+\begin{document}
+
+\ThisULCornerWallPaper{1}{./imagens/header}
+
+\begin{textblock}{15}(0.4, 0.4)
+\noindent
+\begin{center}
+\LARGE{\bf{QXCode - Quixadá Coding Team}}\\
+\large{\bf{Fundamentos de Programação}} \\
+\large{\bf{\today}}
+\end{center}
+\end{textblock}
+
+\title{\bf{Loja Online\\Aplicativo Gerente e Carrinho de Compras}}
+
+\author{
+David Sena \thanks{sena.ufc@gmail.com}, 
+Davi Magalhães. \thanks{davi.ipu@hotmail.com}
+}
+
+\date{}
+
+\maketitle
+\thispagestyle{empty}
+
+%#################################################################
+%#################################################################
+%#################################################################
+%#################################################################
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\linewidth]{imagens/loja_virtual}
+\label{fig:loja}
+\end{figure}
+
+\section{Instruções Gerais}
+O objetivo deste trabalho é simular o sistema de uma loja online. Os gerentes cadastram produtos para serem vendidos na loja e os clientes adicionam esses produtos a seus carrinhos.
+
+Para realizar esse trabalho você precisará lidar com entrada e saída tanto do terminal como de arquivos. Também precisará do conteúdo de vetores e estruturas.
+
+Devem ser gerados dois arquivos executáveis. Um para o gerente e outro para o cliente. A persistência dos dados deve ser feita em arquivos.
+
+\section{Módulo Gerente}
+No Módulo Gerente do seu sistema o gerente de vendas da loja deverá ser capaz de:
+
+\begin{enumerate}
+  \item Visualizar o estoque da loja
+  \item Inserir produto no estoque
+  \item Alterar produto do estoque
+  \item Remover produto do estoque
+  \item Finalizar sessão
+\end{enumerate}
+
+Nas informações do produto deverá conter o seu nome, preço \textit{(float)} e a quantidade em estoque. 
+
+Ao visualizar o estoque da loja, seu sistema deverá gerar automaticamente um identificador para todos os produtos (ID), para que a alteração e/ou remoção do mesmo possa ser feita de modo mais eficiente ao ser buscado pelo sistema.
+
+Ao finalizar a sessão, tudo que tiver sido inserido, alterado ou removido deverá ser salvo num arquivo de chamado estoque.txt.
+
+Uma {\it sugestão} é que você utilize o seguinte formato:
+“id; Nome do produto; preço; quantidade em estoque”, separados por ponto-e-vírgula e um produto por linha.
+
+Exemplo:
+
+\begin{verbatim}
+	  1; Coca-cola; 3.6; 56
+	  2; Biscoito de Chocolate; 1.5; 86
+	  3; Peito de Frango; 14.0; 16
+\end{verbatim}
+
+Ao executar o programa, automaticamente tudo que estiver em estoque.txt deverá ser carregado em memória, se o arquivo não existir, deverá ser criado.
+
+\subsection{Exemplo}
+Exemplo em execução. Os símbolos \verb|>>| significam a entrada de dados do usuário.
+
+\begin{verbatim}
+# GERENTE DA LOJA #
+H - Help
+V - Visualizar o estoque da loja
+I - Inserir produto no estoque
+A - Alterar produto do estoque
+R - Remover produto do estoque
+F - Finalizar sessão
+
+Comando >> V
+
+# ESTOQUE DA LOJA #
+ID; NOME; PREÇO; UND. OU PESO; QUANTIDADE
+1; Coca-cola; 3.6; 56
+2; Biscoito de Chocolate; 1.5; 86
+3; Peito de Frango; 14.0; 16
+
+Comando >> I
+
+# INSERIR PRODUTO NO ESTOQUE #
+Nome do produto >> Tampico
+Preço >> 4.5
+Quantidade >> 34
+Produto inserido com sucesso!
+
+Comando: >> A
+
+# ALTERAR PRODUTO EM ESTOQUE #
+ID do produto >> 2
+
+# ALTERANDO #
+NOME; PREÇO; UND. OU PESO; QUANTIDADE
+Biscoito de Chocolate; 1.5; 86
+
+Novo nome >> Biscoito de Morango
+Novo preço >> 1.6
+Nova quantidade >> 47
+Produto alterado com sucesso!
+
+Comando >> V
+
+# ESTOQUE DA LOJA #
+ID; NOME; PREÇO; UND. OU PESO; QUANTIDADE
+1; Coca-cola; 3.6; 56
+2; Biscoito de Morango; 1.6; 47
+3; Peito de Frango; 14.0; 16
+4; Tampico; 4.5; 34
+
+Comando >> H
+
+# GERENTE DA LOJA #
+H - Help
+V - Visualizar o estoque da loja
+I - Inserir produto no estoque
+A - Alterar produto do estoque
+R - Remover produto do estoque
+F - Finalizar sessão
+
+Comando >> F
+
+# Tudo salvo em estoque.txt! #
+\end{verbatim}
+
+Para deletar um produto do estoque o sistema só deverá pedir o ID. Deve ser mostrado se a operação foi bem sucedida ou não. Da mesma forma, em alterar, deve ser avisado caso o ID passado não corresponda a nenhum produto.
+
+Você ainda deve estar atendo a outras situações importantes.
+
+\begin{itemize}
+\item Não permitir dois produtos com o mesmo nome.
+\item Não permitir produtos com preço ou quantidade negativa.
+\end{itemize}
+
+\section{Módulo Carrinho}
+No Módulo Carrinho do seu sistema funcionará tal qual o carrinho de compras de uma loja virtual. O cliente deverá ser capaz de:
+
+\begin{enumerate}
+  \item Visualizar o estoque da loja
+  \item Visualizar produtos no carrinho
+  \item Inserir produto no carrinho
+  \item Alterar quantidade do produto
+  \item Remover produto do carrinho
+  \item Finalizar compra
+\end{enumerate}
+
+Ao inserir um produto no carrinho, o preço correspondente a quantidade inserida deverá ser mostrado, por exemplo, se uma Coca-cola no valor de 3.6 for inserida, deverá constar no carrinho o valor de 3.6, mas se posteriormente a quantidade for alterada, o valor deverá ser incrementado correspondentemente a nova quantidade, exemplo: duas Coca-colas foram inseridas, então o valor mostrado deverá ser 7.2.
+
+Ao iniciar o carrinho, o arquivo estoque.txt deve ser carregado para memória e ao finalizar o carrinho as quantidades em estoque.txt devem ser atualizadas de acordo com a quantidade de produtos comprados.
+
+Atenção a alguns requisitos importantes.
+\begin{itemize}
+\item Não deve ser possível comprar mais itens do que os disponíveis no estoque
+\item Ao visualizar o carrinho, deve ser mostrado o valor total da compra.
+\item Trate adequadamente o fato de tentar adicionar duas vezes o mesmo produto ao carrinho.
+\item Apenas altere o estoque.txt na finalização da compra.
+\end{itemize}
+
+\section{Sugestões}
+
+Como tanto gerente e carrinho fazem funções parecidas, não repita código. Modularize as ações em funções e coloque em bibliotecas para poder serem usadas tanto por gerente como carrinho. 
+
+Atenção, não repita código. Se quando você quiser modificar algo no seu programa, terá que modificar em mais de um lugar no código, provavelmente há alguma coisa errada. Bom trabalho.
+
+Se precisar de ajuda, lembre-se dos professores, bolsistas, monitores e seus amigos. A ajuda pode estar a um botão de distância.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\linewidth]{./imagens/help}
+\end{figure}
+
+
+\end{document}

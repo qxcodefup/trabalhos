@@ -1,0 +1,194 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[utf8x]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{fontenc}
+\usepackage{graphicx} 
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{pdflscape}
+\usepackage[bottom=3cm,top=3cm,left=3cm,right=3cm]{geometry} 
+\usepackage[pdftex]{hyperref} %permiti \url
+
+\usepackage{wallpaper}
+\usepackage{subfig}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{QXCode}
+\lhead{Jokenpô}
+\fancyfoot[R]{\thepage}
+%\rfoot{Page \thepage}
+
+\usepackage[absolute]{textpos}
+
+\lstset{
+%    language=java,
+    language=c++,
+    keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+    identifierstyle=\ttfamily,
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+    showstringspaces=false,
+    basicstyle=\small,
+    tabsize=2,
+    breaklines=true,
+    frame=single
+}
+
+\renewcommand{\tt}[1]{\lstinline|#1|}
+\renewcommand{\bf}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\emph{#1}}
+
+\begin{document}
+
+\ThisULCornerWallPaper{1}{./imagens/header}
+
+\begin{textblock}{15}(0.4, 0.4)
+\noindent
+\begin{center}
+\LARGE{\bf{QXCode - Quixadá Coding Team}}\\
+\large{\bf{Fundamentos de Programação}} \\
+\large{\bf{\today}}
+\end{center}
+\end{textblock}
+
+\title{\bf{Jokenpô\\Pedra, papel e tesoura}}
+
+\author{
+David Sena \thanks{sena.ufc@gmail.com}, 
+Davi Magalhães. \thanks{davimagal@outlook.com}
+}
+
+\date{}
+
+\maketitle
+\thispagestyle{empty}
+
+%#################################################################
+%#################################################################
+%#################################################################
+%#################################################################
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\linewidth]{imagens/pedra-papel-tesoura}
+\label{fig:jogo}
+\end{figure}
+
+\section{Instruções Gerais}
+Este trabalho tem como objetivo que você desenvolva habilidades de desenvolvimento de jogos, como contagem de pontos, jogadas aleatórias, rounds e início e fim do game.
+
+Para realizar este trabalho você precisará lidar com entrada e saída de informações e com geração de dados aleatórios.
+
+\section{Jokenpô V1}
+O jogo Jokenpô - ou Pedra, Papel e Tesoura - é jogado por dois jogadores em que ambos escolhem, aleatoriamente dentre as três opções, a sua jogada e as exibem ao mesmo tempo vencendo aquele que a opção escolhida ganha a do adversário, ou empatando quando ambos escolhem a mesma opção.
+As regras definem as vitórias do seguinte modo:
+
+\begin{enumerate}
+  \item \textbf{Pedra} ganha da \textbf{tesoura}
+  \item \textbf{Tesoura} ganha do \textbf{papel}
+  \item \textbf{Papel} ganha da \textbf{pedra}
+\end{enumerate}
+
+O jogo deverá ser entre um jogador e o computador, em que este deverá fazer suas jogadas aleatoriamente após as do jogador, que então serão comparadas, informado quem venceu e incrementado o número de vitórias do atual vitorioso. Cada jogo será dividido em 5 rounds, que deverá ser exibido em qual estará no momento e ao fim o jogo deverá perguntar se o jogador deseja jogar novamente ou sair, sempre exibindo o número de vitórias de cada participante - jogador e computador.
+
+\subsection{Exemplo}
+Exemplo em execução. Os símbolos \verb|>>| significam a entrada de dados do usuário.
+
+\begin{verbatim}
+# JOKENPÔ #
+Você: 0 | PC: 0
+Round: 1 / 5
+
+1 - Pedra
+2 - Papel
+3 - Tesoura
+>> 1
+Você jogou PEDRA e o PC PAPEL.
+O PC ganhou!
+
+# JOKENPÔ #
+Você: 0 | PC: 1
+Round: 2 / 5
+
+1 - Pedra
+2 - Papel
+3 - Tesoura
+>> 3
+Você jogou TESOURA e o PC PAPEL.
+Você ganhou!
+
+# JOKENPÔ #
+Você: 1 | PC: 1
+Round: 3 / 5
+
+1 - Pedra
+2 - Papel
+3 - Tesoura
+>> 2
+Você jogou PAPEL e o PC PAPEL.
+Ninguém ganhou!
+
+# JOKENPÔ #
+Você 1 | PC: 1
+Round: 4 / 5
+
+1 - Pedra
+2 - Papel
+3 - Tesoura
+>>
+
+.
+.
+.
+
+# JOKENPÔ #
+Você: 2 | PC: 1
+Round: 5 / 5
+
+1 - Pedra
+2 - Papel
+3 - Tesoura
+>> 3
+Você jogou TESOURA e o PC PAPEL.
+Você ganhou!
+
+PLACAR FINAL:
+Você: 3 | PC: 1
+
+JOGAR NOVAMENTE?
+1 - Sim
+0 - Sair
+\end{verbatim}
+
+\section{Jokenpô V2}
+
+\subsection{Pedra, Papel, Tesoura, Lagarto e Spock}
+Nesta segunda versão você deverá implementar o modo do jogo mais recente em que duas novas opções foram adicionadas, \textbf{Lagarto e Spock}, conforme as regras clássicas e as adicionais:
+
+\begin{enumerate}
+  \item \textbf{Tesoura} ganha do \textbf{papel}
+  \item \textbf{Papel} ganha da \textbf{pedra}
+  \item \textbf{Pedra} ganha do \textbf{lagarto}
+  \item \textbf{Lagarto} ganha do \textbf{Spock}
+  \item \textbf{Spock} ganha da \textbf{tesoura}
+  \item \textbf{Tesoura} ganha do \textbf{lagarto}
+  \item \textbf{Lagarto} ganha do \textbf{papel}
+  \item \textbf{Papel} ganha do \textbf{Spock}
+  \item \textbf{Spock} ganha da \textbf{pedra}
+  \item \textbf{Pedra} ganha da \textbf{tesoura}
+\end{enumerate}
+
+\section{Dúvidas}
+Se precisar de ajuda, lembre-se dos professores, bolsistas, monitores e seus amigos.
+A ajuda pode estar a um botão de distância. :D
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\linewidth]{./imagens/help}
+\end{figure}
+
+\end{document}
