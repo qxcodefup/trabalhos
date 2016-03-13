@@ -12,7 +12,7 @@ O objetivo desse trabalho é simular o jogo de **Blackjack 21** entre um
 usuário e a mesa. As opções do jogador são simplificadas em relação ao
 jogo original.
 
-![Ganhou](./latex/imagens/blackjack)
+![Jogo](https://github.com/qxcodefup/trabalhos/blob/master/jogo_blackjack/latex/imagens/blackjack.jpg)
 
 <http://pt.blackjack.org/regras/>
 
